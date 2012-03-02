@@ -1,0 +1,7 @@
+Some small tools writen by me
+
+=============================
+1.iodisk
+  It's a small program that performing disk performance test,and demonstrates:
+  a.normal read() vs map()
+  b.O_SYNC vs O_DIRECT vs sync() vs fsync() vs fdatasync()
