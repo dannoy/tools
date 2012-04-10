@@ -83,7 +83,7 @@ int elf_get_file_size(char *start_addr, size_t size)
     return fsize;
 }
 
-int elf_read_fwu_info(char *file)
+int elf_read_elf_info(char *file)
 {
     int ret = 0;
     int fsize = 0;
@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
 {
 	int ret = 0;
 
-	elf_read_fwu_info(argv[0]);
+	elf_read_elf_info(argv[0]);
 
 	return ret;	
 }
