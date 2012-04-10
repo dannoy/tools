@@ -44,13 +44,14 @@ void fatal(struct ctx *u, int errnum, char *fmt, ...)
 
 int elf_get_file_size(char *start_addr, size_t size)
 {
-    int fsize = 0;
+    int fsize = 0, fsize2 = 0;
     Elf32_Ehdr *eh = (Elf32_Ehdr *)start_addr;
     Elf32_Shdr *sh= NULL;
     Elf32_Shdr *sh_start = NULL ,*sh_end = NULL;
     Elf32_Shdr *sh_shstrtab = NULL;
     char *shstrtab = NULL;
     int is_debug_elf = 0;
+	//int is_no_debug_elf = 0;
 
     assert(size > sizeof(Elf32_Ehdr));
 
@@ -69,13 +70,21 @@ int elf_get_file_size(char *start_addr, size_t size)
         if(0 == strncmp(&shstrtab[sh->sh_name], ".debug", strlen(".debug"))) {
             is_debug_elf = 1;
         }
+		//else if(sh != sh_start &&
+		//		0 == sh->sh_addr) {
+        //    is_no_debug_elf = 1;
+		//}
     }
+	sh = sh_end - 1;
+	fsize = sh->sh_offset + sh->sh_size;
     if(is_debug_elf) {
-        sh = sh_end - 1;
-        fsize = sh->sh_offset + sh->sh_size;
+        //sh = sh_end - 1;
+        //fsize = sh->sh_offset + sh->sh_size;
+		return fsize;
     }
     else {
-        fsize = eh->e_shoff + eh->e_shnum * eh->e_shentsize;
+        fsize2 = eh->e_shoff + eh->e_shnum * eh->e_shentsize;
+		fsize = fsize > fsize2 ? fsize : fsize2;
     }
 
 

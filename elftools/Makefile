@@ -1,3 +1,7 @@
 
+all = elf_size
+world: $(all)
 elf_size:elf_size.c
-	gcc -g -o $@ $<
+	gcc -o $@ $<
+clean:
+	$(RM) $(all)
