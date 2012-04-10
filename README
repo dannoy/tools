@@ -5,3 +5,8 @@ Some small tools writen by me
   It's a small program that performing disk performance test,and demonstrates:
   a.normal read() vs map()
   b.O_SYNC vs O_DIRECT vs sync() vs fsync() vs fdatasync()
+2.elftools
+  I don't know what I will do concerning elf, but this is a beginning.
+2.1  elf_size  
+	calculate the size of the giving elf
+    Note: Currently only the elf built with -g is supported
