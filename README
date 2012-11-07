@@ -6,7 +6,9 @@ Some small tools writen by me
   a.normal read() vs map()
   b.O_SYNC vs O_DIRECT vs sync() vs fsync() vs fdatasync()
 2.elftools
-  I don't know what I will do concerning elf, but this is a beginning.
-2.1  elf_size  
-	calculate the size of the giving elf
-	Note: Maybe this algorithm is not 100% righ
+  I'm not sure what I will do about ELF, this is just a beginning.
+2.1  elf_size
+	Calculating the size occupied by the giving elf
+	Warning: This algorithm maybe is wrong.
+3.algorithm
+3.1 GCD calculated by Euclidean algorithm
