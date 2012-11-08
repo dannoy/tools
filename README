@@ -2,13 +2,14 @@ Some small tools writen by me
 
 =============================
 1.iodisk
-  It's a small program that performing disk performance test,and demonstrates:
-  a.normal read() vs map()
+  It's a small program that performs disk I/O performance test,and demonstrates:
+  a.normal read() vs mmap()
   b.O_SYNC vs O_DIRECT vs sync() vs fsync() vs fdatasync()
 2.elftools
   I'm not sure what I will do about ELF, this is just a beginning.
 2.1  elf_size
 	Calculating the size occupied by the giving elf
-	Warning: This algorithm maybe is wrong.
+	Warning: This algorithm maybe is wrong when not linking with GNU ld.
 3.algorithm
 3.1 GCD calculated by Euclidean algorithm
+3.2 KMP String Search algorithm
