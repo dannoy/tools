@@ -174,7 +174,7 @@ int bst_insert(struct bst *t, void *d)
 
     while(n) {
         p = n;
-        /* in this case, c must be not equal to 0 */
+        /* in this case, c must not be equal to 0 */
         n = t->comp(d, n->data) < 0 ? L(n) : R(n);
     }
 
