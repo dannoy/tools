@@ -143,3 +143,68 @@ int avl_insert(struct avl *t, int key)
 
     return 0;
 }
+
+static struct avl_node *_avl_minimum(struct avl_node *n)
+{
+    while(L(n)) n = L(n);
+
+    return n;
+}
+
+static struct avl_node *_avl_delete(struct avl_node *n, int key)
+{
+    if(!n) return NULL;
+
+    if(key < K(n)) L(n) = _avl_delete(L(n), key);
+    else if(key > K(n)) R(n) = _avl_delete(R(n), key);
+    else { // key == K(n)
+        if(NULL == L(n) || NULL == R(n)) {
+            struct avl_node *tmp = L(n) ? L(n) : R(n);
+            if(tmp) {
+                *n = *tmp; // copy contents of child to n
+            }
+            else { // n is leaf
+                tmp = n;
+                n = NULL;
+            }
+            free(tmp);
+        }
+        else { // two children case
+            struct avl_node *d = _avl_minimum(n);
+            K(n) = K(d);
+            R(n) = _avl_delete(d, key);
+        }
+
+    }
+    // no child case
+    if(!n) return NULL;
+
+    H(n) = MAX(HH(n->left), HH(n->right)) + 1;
+
+    int bf = BF(n);
+
+    if(bf > 1) {
+        if(0 > BF(L(n))) { // LR case
+            L(n) = _leftRotate(L(n));
+        }
+        // else LL case
+        return _rightRotate(n);
+    }
+    if(bf < -1) {
+        if(0 < BF(R(n))) { // RL case
+            R(n) = _rightRotate(R(n));
+        }
+        // else RR case
+        return _leftRotate(n);
+    }
+    
+    
+    return n;
+}
+
+int avl_delete(struct avl *t, int key)
+{
+    if(t && t->root) t->root = _avl_delete(t->root, key);
+
+    return 0;
+}
