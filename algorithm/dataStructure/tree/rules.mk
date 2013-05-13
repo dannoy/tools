@@ -34,9 +34,9 @@ $(call compile.prog,$(1))
 
 $(foreach src,$($(1)_src),$(eval $(call object_template,$(src))))
 $(1)_clean:
+	$(Q)rm -rf $(OBJ) $(1)
 
 clean:$(1)_clean
-	$(Q)rm -rf $(OBJ) $(1)
 endef
 
 $(foreach prog,$(progs),$(eval $(call prog_template,$(prog))))

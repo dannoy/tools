@@ -9,6 +9,6 @@ struct avl {
 int avl_init(struct avl *t);
 int avl_walk_inorder(struct avl *t);
 int avl_walk_preorder(struct avl *t);
-int avlInsert(struct avl *t, int key);
+int avl_insert(struct avl *t, int key);
 
 #endif
