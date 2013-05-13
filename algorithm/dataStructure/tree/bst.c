@@ -227,3 +227,26 @@ void *bst_delete(struct bst *t, void *d)
 
     return data;
 }
+
+/* Turn a bst into its mirror image
+ * (得到它的镜像树)
+ * */
+static int _bst_mirror(struct bst_node *n)
+{
+    if(!n) return;
+    _bst_mirror(L(n));
+    _bst_mirror(R(n));
+    struct bst_node *t = L(n);
+    L(n) = R(n);
+    R(n) = t;
+
+    return 0;
+}
+int bst_mirror(struct bst *t)
+{
+    if(t && t->root) {
+        _bst_mirror(t->root);
+    }
+
+    return 0;
+}

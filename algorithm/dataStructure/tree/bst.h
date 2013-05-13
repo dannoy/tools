@@ -24,6 +24,7 @@ void *bst_successor(struct bst *t, void *d);
 void *bst_predecessor(struct bst *t, void *d);
 int bst_insert(struct bst *t, void *d);
 void *bst_delete(struct bst *t, void *d);
+int bst_mirror(struct bst *t);
 
 
 #endif

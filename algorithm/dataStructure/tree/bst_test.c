@@ -45,6 +45,12 @@ int main()
     bst_walk_inorder(&t, visit);
     printf("\n");
 
+    bst_mirror(&t);
+    bst_walk_inorder(&t, visit);
+    printf("\n");
+    bst_mirror(&t);
+    bst_walk_inorder(&t, visit);
+    printf("\n");
 
     return 0;
 }
